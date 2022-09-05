@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html -->
+<html class="writer-html5" lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+  <title>2. 智能合约 — XuperChain 官方文档  文档</title>
+  
+
+  
+  <link rel="stylesheet" href="./语言虚拟机兼容矩阵_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./语言虚拟机兼容矩阵_files/pygments.css" type="text/css">
+  <link rel="stylesheet" href="./语言虚拟机兼容矩阵_files/banner.css" type="text/css">
+  <link rel="stylesheet" href="./语言虚拟机兼容矩阵_files/custom.css" type="text/css">
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script src="./语言虚拟机兼容矩阵_files/hm.js"></script><script type="text/javascript" id="documentation_options" data-url_root="../" src="./语言虚拟机兼容矩阵_files/documentation_options.js"></script>
+        <script src="./语言虚拟机兼容矩阵_files/jquery.js"></script>
+        <script src="./语言虚拟机兼容矩阵_files/underscore.js"></script>
+        <script src="./语言虚拟机兼容矩阵_files/doctools.js"></script>
+        <script src="./语言虚拟机兼容矩阵_files/translations.js"></script>
+        <script src="./语言虚拟机兼容矩阵_files/stat.js"></script>
+        <script src="./语言虚拟机兼容矩阵_files/caption.js"></script>
+    
+    <script type="text/javascript" src="./语言虚拟机兼容矩阵_files/theme.js"></script>
+    
+    <link rel="index" title="索引" href="https://xuper.baidu.com/n/xuperdoc/genindex.html">
+    <link rel="search" title="搜索" href="https://xuper.baidu.com/n/xuperdoc/search.html">
+    <link rel="next" title="3. 密码学基础" href="https://xuper.baidu.com/n/xuperdoc/design_documents/crypto.html">
+    <link rel="prev" title="1. 整体流程" href="https://xuper.baidu.com/n/xuperdoc/design_documents/key_process.html"> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+          
+          
+            
+            
+                <div class="version">
+                  <a class="version2" href="https://xuper.baidu.com/n/xuperdoc/index.html">
+                    XuperChain 官方文档 5.1
+                  </a>       
+              </div>
+              <div class="hide"><div class="shallow"></div></div>
+            
+          
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://xuper.baidu.com/n/xuperdoc/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+         
+        <!-- 
+        
+          
+         -->
+        
+          <p class="caption"><span class="caption-text">XUPERCHAIN介绍</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/general_introduction/brief.html">1. 整体介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/general_introduction/basic_concepts.html">2. 基本概念</a></li>
+</ul>
+<p class="caption"><span class="caption-text">快速入门</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/quickstart/quickstart.html">1. 环境部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/quickstart/quickstart.html#basic-operation">2. 基本操作</a></li>
+</ul>
+<p class="caption"><span class="caption-text">进阶使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/multi_nodes.html">1. 网络部署</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/contract_management.html">2. 合约管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/authority_management.html">3. 权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/consensus_usage.html">4. 共识使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/governance.html">5. 链上治理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/parallel_chain.html">6. 联盟链配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/performance_introduction.html">7. 压测工具</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/monitor_usage.html">8. 监控说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/open_network.html">9. 开放网络介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/advanced_usage/more_technology.html">10. 高级功能</a></li>
+</ul>
+<p class="caption"><span class="caption-text">开发手册</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/development_manuals/sdk_development.html">1. 多语言SDK介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/development_manuals/dapp_development.html">2. DAPP开发手册</a></li>
+</ul>
+<p class="caption"><span class="caption-text">应用案例</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/developing_apps/dapps.html">1. 标杆应用</a></li>
+</ul>
+<p class="caption"><span class="caption-text">设计原理</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/key_process.html">1. 整体流程</a></li>
+<li class="toctree-l1 current"><a class="reference internal current" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#"><span class="toctree-expand"></span>2. 智能合约</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#xuperbridge"><span class="toctree-expand"></span>2.1. XuperBridge 桥接层</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id2">2.1.1. 智能合约虚拟机</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id3">2.1.2. 合约上下文管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id4">2.1.3. 合约执行沙盒</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id5">2.1.4. 系统调用设计</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#wasm">2.1.5. WASM 合约支持</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id6">2.1.6. 原生合约支持</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#evm">2.1.7. EVM 合约支持</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#xvm-wasm"><span class="toctree-expand"></span>2.2. XVM WASM 虚拟机</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id7">2.2.1. 基本概念</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id11">2.2.2. XVM 编译流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id12">2.2.3. XVM 运行时</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id13">2.2.4. XVM 内存管理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id14">2.2.5. XVM 计费和机制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id16">2.2.6. XVM 异常处理</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id35">2.2.7. XVM 语言运行时</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#xvm-communitation">2.2.8. XVM 和 WASM 模块的通信</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id37">2.2.9. XVM 工具链</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/crypto.html">3. 密码学基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/p2p.html">4. p2p网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/consensus.html">5. 共识算法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/ledger.html">6. 账本状态机</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/permission_model.html">7. 权限管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/regulatory.html">8. 监管机制</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/others.html">9. 其他</a></li>
+</ul>
+<p class="caption"><span class="caption-text">贡献指南</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/contribution/pull_requests.html">代码提交指南</a></li>
+</ul>
+<p class="caption"><span class="caption-text">更多资料</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/more_materials/code_explanation.html">1. 源码解读</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/more_materials/config_explanation.html">2. 配置文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/more_materials/video.html">3. 视频教程</a></li>
+</ul>
+         
+        
+        
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://xuper.baidu.com/n/xuperdoc/index.html">XuperChain 官方文档</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+<li><a href="https://xuper.baidu.com/n/xuperdoc/index.html" class="breadtitle">首页</a>
+</li>
+<li>
+   <img class="arrow_r" src="./语言虚拟机兼容矩阵_files/arrow_right.svg">
+   <!-- <img class="arrow_r" src="../_static/images/arrow_right.svg"/> -->
+</li>
+<li class="lititle"><span class="section-number">2. </span>智能合约</li>
+
+    
+<li class="wy-breadcrumbs-aside">
+   <a href="https://github.com/xuperchain/docs/edit/master/source/design_documents/smart_contract.rst" class="fa fa-github">
+      编辑此页</a>
+</li>
+
+  </ul>
+
+  
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">2. </span>智能合约<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id1" title="永久链接至标题">¶</a></h1>
+<p>XuperChain 通过 XuperBridge 实现了合约与虚拟机的解耦，由 XuperBridge 统一进行合约上下文的管理，虚拟机只需要关注无状态的合约执行，从而实现一体化的智能合约引擎。</p>
+<p>当前在编程语言方面支持 C++, JAVA, Go, Solidity, 在运行时方面支持 Native 合约，WASM 合约和 EVM 合约。</p>
+<p>语言和运行时之间的关系如表所示</p>
+<div class="wy-table-responsive"><table class="colwidths-given docutils align-default" id="id38">
+<caption><span class="caption-text">语言虚拟机兼容矩阵</span><a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id38" title="永久链接至表格">¶</a></caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>语言</p></th>
+<th class="head"><p>Native</p></th>
+<th class="head"><p>WASM</p></th>
+<th class="head"><p>EVM</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>GO</p></td>
+<td><p>支持</p></td>
+<td><p>实验性支持</p></td>
+<td><p>不支持</p></td>
+</tr>
+<tr class="row-odd"><td><p>C++</p></td>
+<td><p>不支持</p></td>
+<td><p>支持</p></td>
+<td><p>不支持</p></td>
+</tr>
+<tr class="row-even"><td><p>JAVA</p></td>
+<td><p>支持</p></td>
+<td><p>不支持</p></td>
+<td><p>不支持</p></td>
+</tr>
+<tr class="row-odd"><td><p>Solidity</p></td>
+<td><p>不支持</p></td>
+<td><p>不支持</p></td>
+<td><p>支持</p></td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="xuperbridge">
+<h2><span class="section-number">2.1. </span>XuperBridge 桥接层<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#xuperbridge" title="永久链接至标题">¶</a></h2>
+<p>XuperBridge 桥接层实现合约和虚拟机的解耦，桥接层主要负责虚拟机的管理，合约上下文管理，合约执行沙盒，合约代码管理等。</p>
+<div class="section" id="id2">
+<h3><span class="section-number">2.1.1. </span>智能合约虚拟机<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id2" title="永久链接至标题">¶</a></h3>
+<p>XuperChain 对虚拟机接口提供统一的抽象，使得虚拟机可以作为一个通用的组件。任何实现了虚拟机的接口约束的组件，均可以作为一个合约执行的虚拟机。</p>
+<p>XuperChain 对虚拟机的约束由于 InstaneCreator 接口表示</p>
+<blockquote>
+<div><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">InstanceCreator</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">CreateInstance</span><span class="p">(</span><span class="nx">ctx</span> <span class="o">*</span><span class="nx">Context</span><span class="p">,</span> <span class="nx">cp</span> <span class="nx">ContractCodeProvider</span><span class="p">)</span> <span class="p">(</span><span class="nx">Instance</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+    <span class="nx">RemoveCache</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="simple">
+<dt>InstanceCreator 主要有两个接口约束</dt><dd><ul class="simple">
+<li><p>CreateInstance: 创建一个虚拟机实例，用于执行一次合约调用</p></li>
+<li><p>RemoveCache: 清除有关缓存，释放资源</p></li>
+</ul>
+</dd>
+</dl>
+<p>每个 Instance 则负责一次具体的合约执行。Instance 的接口约束为</p>
+<blockquote>
+<div><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">Instance</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Exec</span><span class="p">()</span> <span class="kt">error</span>
+    <span class="nx">ResourceUsed</span><span class="p">()</span> <span class="nx">contract</span><span class="p">.</span><span class="nx">Limits</span>
+    <span class="nx">Release</span><span class="p">()</span>
+    <span class="nx">Abort</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Instance 主要有两个资源消耗</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Exec: 执行合约调用</p></li>
+<li><p>ResourceUsed: 获取本次合约调用的资源消耗</p></li>
+<li><p>Release: 合约执行完毕，释放有关资源</p></li>
+<li><p>Abort: 合约执行异常，中止执行</p></li>
+</ul>
+</div></blockquote>
+<p>当前 XuperChain 共提供四种类型的虚拟机实现</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>KernelInstance:用于 Kernel 合约的执行</p></li>
+<li><p>EVMInstance： 用于 EVM 合约的执行</p></li>
+<li><p>XVMInstance： 用于 WASM 合约的执行</p></li>
+<li><p>NativeInstance： 用于Native 合约的执行</p></li>
+</ul>
+</div></blockquote>
+<p>XuperBridge 提供了虚拟机的注册机制，虚拟机实现只需要调用 如下代码即可完成虚拟机的注册</p>
+<blockquote>
+<div><div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="n">bridge.Register</span><span class="p">(</span><span class="n">contractType</span><span class="p">,</span> <span class="n">Name</span><span class="p">,</span> <span class="n">driver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>为同一种合约类型注册不同的虚拟机也是允许的</p>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">2.1.2. </span>合约上下文管理<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id3" title="永久链接至标题">¶</a></h3>
+<p>XuperBridge 负责管理合约上下文。</p>
+<p>每次合约运行都会有一个伴随合约执行的上下文(context)对象，context里面保存了合约的运行参数，执行沙盒，输出结果，事件，日志等。context用于隔离多个合约的执行，也便于合约的并发执行。所有合约执行的状态信息由 XuperBridge 管理，虚拟机只需要关注无状态的合约执行</p>
+<p>合约执行的所有状态信息由 XuperBridge 的上下文管理器(ContextManager) 统一管理。ContextManager 的主要功能包括</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>维护全局递增的 ContextID</p></li>
+<li><p>按需要进行 Context 的创建和销毁</p></li>
+<li><p>保存所有合约调用的状态</p></li>
+<li><p>根据 ContextID, 返回上下文有关信息</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic">
+<li><p>Context 的创建和销毁</p>
+<blockquote>
+<div><p>context在合约虚拟机每次执行合约的时候创建。每个context都有一个context id，这个id由 ContextManager 维护，在xchain启动的时候置0，每次创建一个context对象加1，ContextManager 保存了context id到context对象的映射。</p>
+<p>context id会传递给合约虚拟机,在之后的合约发起系统调用过程中需要带上这个context id来标识本次合约调用以找到对应的context对象。</p>
+<p>context的销毁时机比较重要，因为我们还需要从context对象里面获取合约执行过程中的Response以及读写集，因此有两种解决方案，一种是由调用合约的地方管理，这个是xuper3里面做的，一种是统一销毁，这个是目前的做法，在打包成块结束调用Finalize的时候统一销毁所有在这个块里面的合约context对象。</p>
+</div></blockquote>
+</li>
+<li><p>合约上下文的操作</p>
+<blockquote>
+<div><p>合约上下文主要包括以下三个操作</p>
+<ul class="simple">
+<li><p>NewContext，创建一个context，需要合约的参数等信息。</p></li>
+<li><p>Invoke，运行一个context，这一步是执行合约的过程，合约执行的结果会存储在context里面。</p></li>
+<li><p>Release，销毁 context，context持有的所有资源得到释放。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="4">
+<li><p>合约上下文信息的传递</p>
+<blockquote>
+<div><p>合约虚拟机和 XuperBridge 通过系统调用进行通信获取合约状态的通信与传递，通过全局唯一的ContextID 标示需要获取的 Context对象，相关的系统调用具体包括</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>GetCallArgs: 获取上下文参数</p></li>
+<li><p>SetOutput:上下文执行结果</p></li>
+<li><p>PostLog： 输出上下文执行日志</p></li>
+<li><p>EmitEvent: 输出上下文事件</p></li>
+</ul>
+</div></blockquote>
+<p>合约 SDK 对上下文管理的有关系统调用进行了封装，合约开发者在合约开发过程中只需要调用本地方法即可完成状态信息的获取和传递。</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">2.1.3. </span>合约执行沙盒<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id4" title="永久链接至标题">¶</a></h3>
+<p>XuperBridge 采用两阶段提交技术，预执行阶段生成合约的读写集，提交阶段对带读写集的交易进行签名和提交，节点收到完整交易后进行交易验证，验证通过后将有关数据写入到状态数据库中。</p>
+<p>XuperBridge 通过合约执行沙盒(Sandbox)技生成读写集，主要包括</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>XMState: 合约 KV 数据的读写集</p></li>
+<li><p>UTXOState： 合约 UTXO 的读写集</p></li>
+<li><p>CrossQuerryState: 跨链调用的读写集</p></li>
+<li><p>ContractEventState：合约事件相关的读写集</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple">
+<li><p>KV 数据读写集</p></li>
+</ol>
+<p>合约 KV 数据的读写集需要实现事务隔离，具体包括</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>读请求不会读到最新的其他事务带来的变更</p></li>
+<li><p>读请求会读到最新的自己的写请求（包括删除）的变更</p></li>
+<li><p>写请求在提交前不会被其他合约读到</p></li>
+<li><p>新写入的会被迭代器读到</p></li>
+</ul>
+<p>为实现以上目标，每次在交易预执行阶段生成一个空白执行沙盒，交易执行过程中记录有关数据的读写情况，各个接口对读写集的影响如下</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Get会生成一个读请求</p></li>
+<li><p>Put会产生一个读加一个写</p></li>
+<li><p>Delete会产生一个读加一个特殊的写（TODO）</p></li>
+<li><p>Iterator会对迭代的key产生读</p></li>
+</ul>
+</div></blockquote>
+<p>在 Get 请求中，如果访问的值已在读集中存在，则直接返回，如果不存在，则从账本中进行读取。</p>
+<p>交易验证阶段与预执行阶段相似，区别在于如果访问的值在读集中不存在，则表明读集不相等，交易验证失败。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">2.1.4. </span>系统调用设计<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id5" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>XuperBridge为所有合约提供统一的合约接口，从抽象方式上类似于linux内核对应于应用程序，内核代码是一份，应用程序可以用各种语言实现，比如 go,c。
+类比到合约上就是各种合约的功能，如KV访问，QueryBlock, QueryTx等，这些请求都会通过跟xchain通信的方式来执行，这样在其上实现的各种合约虚拟机只需要做纯粹的无状态合约代码执行。</p>
+<div class="figure align-center" id="id39">
+<a class="reference internal image-reference" href="./语言虚拟机兼容矩阵_files/contract.png"><img alt="XuperBridge" src="./语言虚拟机兼容矩阵_files/contract.png" style="width: 300px;"></a>
+<p class="caption"><span class="caption-text">XuperBridge</span><a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id39" title="永久链接至图片">¶</a></p>
+</div>
+</div></blockquote>
+<p>1.合约与 xchain 的通信机制</p>
+<blockquote>
+<div><p>xchain进程需要调用合约虚拟机来执行具体的合约代码，合约虚拟机也需要跟xchain进程通信来进行具体的系统调用，这是一个双向通信的过程。这种双向通信在不同虚拟机里面有不同的实现，</p>
+<ul class="simple">
+<li><p>在native合约里面由于合约是跑在独立进程，采用跨进程通信的方式进行。这里选用了基于 TCP 作为跨进程通信的传输层，xchain 在启动合约进程的时候把 syscall 的地址以及合约进程的地址传递给合约进程。合约进程一方面监听在 socket 上等待xchain调用自己运行合约代码，另一方面通过 xchain 的 socket 创建一个指向xchain syscall服务的 grpc 客户端来进行系统调用。</p></li>
+</ul>
+<div class="figure align-center" id="id40">
+<a class="reference internal image-reference" href="./语言虚拟机兼容矩阵_files/contract-socket.png"><img alt="合约socket" src="./语言虚拟机兼容矩阵_files/contract-socket.png" style="width: 400px;"></a>
+<p class="caption"><span class="caption-text">合约 socket</span><a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id40" title="永久链接至图片">¶</a></p>
+</div>
+<ul class="simple">
+<li><p>在WASM虚拟机里面情况有所不同，WASM 虚拟机是以 library 的方式链接到 xchain 二进制里面，所以虚拟机和xchain在一个进程空间，通信是在 xchain 和 WASM虚拟机之间进行的，这里牵扯到xchain的数据跟虚拟机里面数据的交换，在实现上是通过WASM自己的模块机制实现的，xchain实现了一个虚拟的WASM模块，合约代码执行到外部模块调用的时候就转到对应的xchain函数调用。<a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#xvm-communitation"><span class="std std-ref">XVM 和 WASM 模块的通信</span></a> 对 WASM虚拟机与宿主的通信方式有更多的描述</p></li>
+<li><p>在 EVM 合约中，合约解释器被嵌入到 xchain 二进制中, 有关调用通过本地函数调用的方式执行</p></li>
+<li><p>在 kernel 合约中，合约代码本身是 xchain 进程的一部分，有关系统调用通过本地函数调用的方式进行即可</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><dl class="simple">
+<dt>数据传输协议</dt><dd><p>无论是在 WASM 合约中还是在原生合约中，由于 xchain 和合约的地址空间不同，需要涉及到数据的序列化和反序列化。选择 ` protobuf &lt;<a class="reference external" href="https://developers.google.com/protocol-buffershttps://developers.google.com/protocol-buffers">https://developers.google.com/protocol-buffershttps://developers.google.com/protocol-buffers</a>&gt;`_ 作为数据的序列化和反序列化协议。
+在 WASM 合约中，为了减少合约提及，降低运行时内存开销，选择 <cite>lite-runtime &lt;https://squidfunk.github.io/protobluff/guide/runtimes/#lite-runtime&gt;</cite> 进行数据的序列化和反序列化。 <span class="xref std std-ref">toolchain</span> 中的 EMCC 内置了 protobuf 的 runtime，在链接时链接到 WASM 目标文件中。</p>
+</dd>
+</dl>
+</li>
+<li><p>系统调用接口</p>
+<blockquote>
+<div><p>XuperChain 提供了通用的系统调用接口，所有服务由 SyscallService 提供，不同合约根据合约类型的不同采用grpc 活着 memrpc 的方式请求系统调用。</p>
+<p>按照系统调用的不同可以分为以下几类
+* 数据访问: 合约对状态数据的读写，主要包括 KV 访问和迭代器访问
+* 链上服务: 合约查询链上数据，主要包括查询区块，查询交易，合约调用，合约内转账，跨链查询
+* 状态管理: 和执行上下文交互，主要包括获取调用参数，调用日志，调用事件，返回调用结果
+* 其他: 心跳信息，主要用于 native 合约</p>
+<p>完整的 SyscallService pb 声明如下</p>
+</div></blockquote>
+</li>
+</ol>
+<div class="highlight-protobuf notranslate"><table class="highlighttable"><tbody><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kd">service</span> <span class="n">Syscall</span> <span class="p">{</span>
+    <span class="c1">// KV service</span>
+    <span class="k">rpc</span> <span class="n">PutObject</span><span class="p">(</span><span class="n">xchain.contract.sdk.PutRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.PutResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">GetObject</span><span class="p">(</span><span class="n">xchain.contract.sdk.GetRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.GetResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">DeleteObject</span><span class="p">(</span><span class="n">xchain.contract.sdk.DeleteRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.DeleteResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">NewIterator</span><span class="p">(</span><span class="n">xchain.contract.sdk.IteratorRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.IteratorResponse</span><span class="p">);</span>
+
+    <span class="c1">// Chain service</span>
+    <span class="k">rpc</span> <span class="n">QueryTx</span><span class="p">(</span><span class="n">xchain.contract.sdk.QueryTxRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.QueryTxResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">QueryBlock</span><span class="p">(</span><span class="n">xchain.contract.sdk.QueryBlockRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.QueryBlockResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">Transfer</span><span class="p">(</span><span class="n">xchain.contract.sdk.TransferRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.TransferResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">ContractCall</span><span class="p">(</span><span class="n">xchain.contract.sdk.ContractCallRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.ContractCallResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">CrossContractQuery</span><span class="p">(</span><span class="n">xchain.contract.sdk.CrossContractQueryRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.CrossContractQueryResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">GetAccountAddresses</span><span class="p">(</span><span class="n">xchain.contract.sdk.GetAccountAddressesRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.GetAccountAddressesResponse</span><span class="p">);</span>
+
+    <span class="c1">// Heartbeat</span>
+    <span class="k">rpc</span> <span class="n">Ping</span><span class="p">(</span><span class="n">xchain.contract.sdk.PingRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.PingResponse</span><span class="p">);</span>
+
+    <span class="c1">// Post log</span>
+    <span class="k">rpc</span> <span class="n">PostLog</span><span class="p">(</span><span class="n">xchain.contract.sdk.PostLogRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.PostLogResponse</span><span class="p">);</span>
+
+    <span class="k">rpc</span> <span class="n">GetCallArgs</span><span class="p">(</span><span class="n">xchain.contract.sdk.GetCallArgsRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.CallArgs</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">SetOutput</span><span class="p">(</span><span class="n">xchain.contract.sdk.SetOutputRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.SetOutputResponse</span><span class="p">);</span>
+
+    <span class="c1">// Send Event</span>
+    <span class="k">rpc</span> <span class="n">EmitEvent</span><span class="p">(</span><span class="n">xchain.contract.sdk.EmitEventRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.EmitEventResponse</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></tbody></table></div>
+<ol class="arabic" start="4">
+<li><p>xchain 对合约的调用</p>
+<blockquote>
+<div><p>在 XuperCahin 中， 除了合约会通过系统调用接口请求 xchain 提供的各种服务外， xchain 也需要请求执行合约代码。xchain 对合约的调用随合约类型的不同而不同。</p>
+<p>在原生合约中，每个合约是一个进程，合约进程和 xchain 拥有不同的地址空间，甚至可能处于不同的 <a class="reference external" href="https://en.wikipedia.org/wiki/Linux_namespaces">namespace</a>, 合约进程在启动的时候会监听一个本地 TCP 端口，作为 grpc 服务端等待 xchain 进程发起的执行合约调用的请求。</p>
+<p>原生合约提供的GRPC 服务如下所示</p>
+<div class="highlight-protobuf notranslate"><div class="highlight"><pre><span></span><span class="kd">service</span> <span class="n">NativeCode</span> <span class="p">{</span>
+    <span class="k">rpc</span> <span class="n">Call</span><span class="p">(</span><span class="n">xchain.contract.sdk.NativeCallRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.NativeCallResponse</span><span class="p">);</span>
+    <span class="k">rpc</span> <span class="n">Ping</span><span class="p">(</span><span class="n">xchain.contract.sdk.PingRequest</span><span class="p">)</span> <span class="k">returns</span> <span class="p">(</span><span class="n">xchain.contract.sdk.PingResponse</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>在 WASM 合约中，虚拟机被嵌入到 xchain 二进制中，每个合约被编译成一个本地的动态链接库，合约方法是动态链接库中的导出函数，因此合约调用根据合约名和合约方法的名称，找到对应的合约方法的地址，通过 cgo 进行本地调用即可。</p>
+<p>在 EVM 合约中，合约采用解释执行的方式，合约虚拟机作为一个库，被嵌入到 xchain 二进制文件中，合约调用时只需要为解释器设置对应的参数，调用解释器编程库提供的方法即可。</p>
+<p>在 Kernel 合约中,Kernel 合约和 xchain 在同一个二进制中， 共享同一个地址空间。XuperChain 通过 Register 机制实现 Kernel 合约的注册，执行时只需要使用 Register的getKernelMethod 方法，找到对应的合约代码的地址进行本地调用即可。</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="wasm">
+<h3><span class="section-number">2.1.5. </span>WASM 合约支持<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#wasm" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>XuperChain 通过 <a class="reference internal" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#xvm"><span class="std std-ref">XVM WASM 虚拟机</span></a> 实现对 WASM 合约的支持。当前支持通过 C/C++ 语言来开发智能合约，也实验性质地支持通过 GO语言(&lt;=1.13) 来开发智能合约。</p>
+<p>在 WASM 合约中，每个合约是一个被编译成一个 WASM 模块，xchain 为合约提供执行沙盒环境，不同合约之间互相隔离，合约访问的系统资源受到严格的控制。</p>
+<p>WASM 合约性能高，安全性好，支持 GAS 计费机制,适用于公链，也适用于联盟链等场景。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">2.1.6. </span>原生合约支持<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id6" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>XuperChain 也提供原生合约(也称 native 合约)支持，当前支持通过 GO/JAVA 来进行智能合约开发，也可以方便地拓展到其他语言。</p>
+<p>在原生合约中，每个合约是一个运行在本地或者容器中的进程，合约和 xchain 之间通过 GRPC 协议进行通讯。需要注意的是，原生合约不支持 GAS 机制，安全性略弱。可以使用容器技术对原生合约可以访问的资源做基本的限制。</p>
+<p>原生合约扩展性强，语言支持多，主要适用于联盟链场景。</p>
+</div></blockquote>
+</div>
+<div class="section" id="evm">
+<h3><span class="section-number">2.1.7. </span>EVM 合约支持<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#evm" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><blockquote>
+<div><p>XuperChain 提供了对 EVM 合约的支持，可以使用 solidity 语言进行智能合约开发，以太坊合约开发者可以方便的使用自己熟悉的语言。</p>
+<p>在 EVM 合约中，合约以解释执行的方式执行，合约解释器被嵌入到 xchain 二进制中.
+相比于 WASM 合约和 原生合约，以太坊合约在性能方面路弱，主要适用于已有业务迁移至xhcian 的场景。</p>
+</div></blockquote>
+<p>XuperBridge 负责合约代码的管理，合约代码管理由 ContractCodeProvider 提供，主要接口约束为</p>
+<blockquote>
+<div><div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="nx">ContractCodeProvider</span> <span class="kd">interface</span> <span class="p">{</span>
+<span class="nx">GetContractCodeDesc</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">protos</span><span class="p">.</span><span class="nx">WasmCodeDesc</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="nx">GetContractCode</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="nx">GetContractAbi</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>ContractCodeProvider 主要功能提供合约代码以及合约的ABI(针对 EVM 合约)
+合约部署时，合约代码从请求中获取代码，合约调用时从账本获取代码， ContractCodeProvider 还维护了合约代码的缓存，当存在内存活着磁盘的缓存时，ContractCodeProvider 直接返回对应的代码缓存。</p>
+</div></blockquote>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="xvm-wasm">
+<span id="xvm"></span><h2><span class="section-number">2.2. </span>XVM WASM 虚拟机<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#xvm-wasm" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p>XVM 是 XuperChain 自研的 WebAssembly(简称WASM) 虚拟机， 采用AOT(Ahead Of Time) 模式执行，用于支持 WASM 合约的执行。其基本思路是将每一个 WASM 模块编译成一个动态链接库，每一个 export 方法通过编译成动态链接库里的一个全局符号, xchain 通过 CGO 进行调用。</p>
+<p>广义的 XVM 除了 XVM 运行时之外，还包括构建工具 XDEV，编译工具 EMCC，合约标准库 contract-sdk-cpp。</p>
+</div></blockquote>
+<div class="section" id="id7">
+<h3><span class="section-number">2.2.1. </span>基本概念<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id7" title="永久链接至标题">¶</a></h3>
+<ul>
+<li><p>WebAssembly</p>
+<blockquote>
+<div><p><a class="reference external" href="https://webassembly.org/">WebAssembly</a>  起源于高性能的 Web 执行技术，后续作为一种通用的编译 <a class="reference external" href="https://zh.wikipedia.org/wiki/%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81">目标代码</a> 得到浏览器外的支持，作为通用的沙盒执行技术，广泛应用于物联网，边缘计算，区块链等领域。</p>
+<p>WebAssembly 执行模式主要包括 <a class="reference external" href="https://zh.wikipedia.org/wiki/%E7%9B%B4%E8%AD%AF%E5%99%A8">解释执行</a> , <a class="reference external" href="https://zh.wikipedia.org/wiki/%E5%8D%B3%E6%99%82%E7%B7%A8%E8%AD%AF">即时编译 (Just In time, abbr JIT)</a> , 提前编译 Ahead Of Time(AOT) 三种执行模式。</p>
+</div></blockquote>
+</li>
+<li><p>动态链接</p>
+<blockquote>
+<div><p><a class="reference external" href="https://zh.wikipedia.org/wiki/%E5%8A%A8%E6%80%81%E8%BF%9E%E6%8E%A5%E5%99%A8">动态链接</a> 是 linux 等现代操作系统支持运行时符号重定位机制，将符号解析从链接时推迟到运行时。
+通过动态链接机制，可以实现不同应用程序共享链接库、降低可执行文件大小等功能，也可以通过动态链接库实现插件，热更新等功能。
+<a class="reference external" href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E7%A7%BB%E6%A4%8D%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3">POSIX API</a> 中提供的动态链接相关的函数包括</p>
+<ul class="simple">
+<li><p>dlopen: 打开一个动态链接库</p></li>
+<li><p>dlsym: 从动态链接库中查找符号的地址</p></li>
+<li><p>dlclose: 关闭一个动态链接库</p></li>
+<li><p>dlerror: 获取动态链接库中符号的地址</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>MMAP</dt><dd><p>Linux 将进程地址空间进行了划分成文本段(Text), 已初始化的数据段(Data), 未初始化的数据(BSS)，堆(Heap)，内存映射(MMAP),栈(Stack) 等区域。通过 <a class="reference external" href="https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84">MMAP</a> 匿名映射可以为进程分配大块的虚拟内存。与 <a class="reference external" href="https://man7.org/linux/man-pages/man2/brk.2.html">brk 系统调用</a> 相比, MMAP 在处理大块内存时有更高的内存利用效率。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h3><span class="section-number">2.2.2. </span>XVM 编译流程<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id11" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>WebAssembly 作为一种中间表示，本身无法在处理器上执行。为了能够执行WebAssembly，需要有另一个程序将 WebAssembly 转化为本地二进制码。通常有解释执行，JIT (预编译)执行和AOT(预编译)执行三种执行模式。</p>
+<p>解释执行模式是一边读取 WebAssembly 字节码，一边执行有关指令。通常，在解释执行模式下，解释器需要为不同的模块存储运行时数据等等。在解释执行模式下，解释器每次读取一条或多条 WASM 指令，并修改对应的运行时数据。</p>
+<p>JIT(Just In Time)执行模式是针对解释执行模式的性能优化，将频繁执行的指令提前编译成本地机器码，首次执行时会比较慢，随着时间推移，热点代码被编译成本地机器码之后性能获得大幅提升。</p>
+<p>AOT(Ahead of Time) 执行模式则是提前讲所有WASM 字节码编译成本地指令，执行的时候没有编译过程，因此性能通常最高。AOT 模式启动时需要进行字节码编译，因此启动速度慢。此外，AOT 编译由于不能利用运行时信息，因此特殊条件性性能可能不如 JIT 模式。</p>
+<p>XuperChain 采用 AOT 模式，将每一个 WASM 模块编译成一个动态链接库供 XVM 调用。</p>
+<p>完整编译加载流程如图所示</p>
+<div class="figure align-center" id="id41">
+<a class="reference internal image-reference" href="./语言虚拟机兼容矩阵_files/xvm_compile.png"><img alt="XVM编译加载流程" src="./语言虚拟机兼容矩阵_files/xvm_compile.png" style="width: 600px;"></a>
+<p class="caption"><span class="caption-text">XVM编译加载流程</span><a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id41" title="永久链接至图片">¶</a></p>
+</div>
+<p>针对C++ 合约，完整的编译加载流程为: CPP -&gt; WASM -&gt; C -&gt; 动态链接库</p>
+<p>针对GO 合约，完整的编译加载流程为: GO -&gt; WASM-&gt; C -&gt; 动态链接库</p>
+<p>其中动态链接库的格式随 XVM 环境的不同而不同， 在Linux 上是 ELF 格式的可执行文件，在 Mac 上是一个 MAC-O 格式的可执行文件。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id12">
+<h3><span class="section-number">2.2.3. </span>XVM 运行时<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id12" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>WASM 模块被编译成动态链接库之后还不能直接执行，XVM 运行时提供了 WASM 模块执行的入口，负责编译成动态链接库的 WASM 模块与操作系统之间的交互。</p>
+<p>从功能上来看， XVM 运行时主要包括运行时数据结构与运行时行为。运行时数据结构为动态链接库的装载，外部函数的调用等提供数据结构支持，运行时行为则包括运行时内存管理，运行时异常，执行栈等</p>
+<ul class="simple">
+<li><p>运行时数据结构</p></li>
+</ul>
+<blockquote>
+<div><p>XVM 相关的核心数据结构主要包括 xvm_resolver_t，xvm_code_t，和 xvm_context_t</p>
+<blockquote>
+<div><ul>
+<li><p>xvm_resolver_t</p>
+<blockquote>
+<div><p>主要负责全局符号的解析，函数的解析，函数调用等功能，</p>
+</div></blockquote>
+</li>
+<li><p>xvm_code_t</p>
+<blockquote>
+<div><p>xvm_code_t 代表一个 wasm 模块或者一个动态链接库，xvm_code_t 对象包含了如何解析外部函数，如何新建一个独立的执行环境(xvm_context_t)等必须的信息。</p>
+</div></blockquote>
+</li>
+<li><p>xvm_context_t</p>
+<blockquote>
+<div><p>xvm_context_t 代表一次隔离的 WASM 调用，拥有自己独立的内存页，栈空间，独立的表结构，GAS 限制等资源等。在 xvm_context_t 中保留了 module_handle 的指针，包含了初始化该 context 的 xvm_code_t 的所有导出符号的列表。xvm_context_t 中也保留了生成该 context 的 xvm_code_t 的指针。</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<ul>
+<li><p>运行时行为</p>
+<blockquote>
+<div><p>运行时行为在 XVM 中定义，以回调用函数的形式提供，在初始化 xvm_context_t，执行导出函数等的时候被被动态链接库调用。</p>
+<p>XVM 运行时行为遵循 wasm-rt.h 的约束，主要包括</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>wasm_rt_trap: 处理异常</p></li>
+<li><p>wasm_rt_register_func_type：注册函数类型</p></li>
+<li><p>wasm_rt_allocate_memory: 分配内存</p></li>
+<li><p>wasm_rt_grow_memory: 内存增长</p></li>
+<li><p>wasm_rt_allocate_table： 分配表</p></li>
+<li><p>wasm_rt_call_stack_depth：获取栈深度</p></li>
+</ul>
+</div></blockquote>
+<p>后续章节会对运行时行为有详细的描述</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id13">
+<h3><span class="section-number">2.2.4. </span>XVM 内存管理<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id13" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>在 WASM 中，内存采用按页分配的方式，每页大小为 65535K，一个 WASM 模块最多允许 65535 页，总的内存大小为 4G。WASM 将 4G 的内存空间划分为保留段，静态数据段，栈段，堆段四个不同的区域。</p>
+<p>XVM 内存管理主要包括两部分，分别是 XVM 自身的内存以及为 WASM 模块分配的内存。为 XVM 分配的内存主要用于初始化 WASM 模块的表，初始化外部函数，初始化全局变量，WASM 运行时栈等等。</p>
+<p>针对页内存，XVM 按照 WASM 的标准进行内存的申请和分配，64K 为一页，按页进行内存分配。在每个 WASM 模块加载时，XVM 默认分配一个页面的内存。 针对大块内存，采用 MMAP 匿名页进行内存分配。WASM 中的每个内存页对应于XVM 进程 MMAP 区的一个匿名内存映射。采用匿名页映射的优势在于能够模块卸载的时候能够比较方便进行页面回收，降低 XVM 进程的内存占用。</p>
+<p>除了 WASM 的内存外，WASM 模块的初始化，WASM 函数调用也需要动态地申请内存等等。由这些内存较小，需要频繁进行分配和释放，对这些内存，采用 calloc(sbrk) 从 XVM 进程的堆空间分配内存。</p>
+<p>需要注意的是，XVM 当前不支持内存增长，只能在模块初始化的时候进行所需的页内存的分配。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id14">
+<h3><span class="section-number">2.2.5. </span>XVM 计费和机制<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id14" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>和 wasmtime， wasmer 等通用 WebAssembly 运行时略有差异, XVM 主要用于智能合约的执行，需要满足可停止，可计费等特性。解释执行模式下，每一条指令的执行都可以被 WASM 运行时提前拦截，运行时只需要在每次执行指令前统计对应的指令的 GAS 消耗即可。为了在 AOT 模式下实现以可停止性和可计费等特性，XVM 采用代码注入的方式的方式实现资源与计费机制。</p>
+<p>在 XVM 编译加载的第二阶段(WASM -&gt; C），XVM 采用 <a class="reference external" href="https://github.com/webassembly/wabt">WABT</a> 完成从 WASM 到 C 的转换。XVM 使用的 WABT 为定制版本，在完成基本的分析和转换之后，WABT 会在每个 <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_block">基本块</a>  的第一条指令前插入一条 GAS 消耗检查的指令，判断当前基本块执行完成后是否会超出 GAS 限制，如果执行完成会超出限制，则跑抛出异常。异常会被 XVM 运行时捕获并返回给上层调用方，由调用方来决定GAS 超出限制后的处理方式。需要注意的是，XVM 的 GAS 消耗检查指令是在实际执行之前进行的,不需要进行后续指令的执行即可确认是否超出限制。</p>
+<p>XVM 的 GAS 限制是调用粒度的，每次函数调用的时候会设置此次函数调用的最大 GAS 限制，此次调用失败只会影响到这次调用</p>
+</div></blockquote>
+</div>
+<div class="section" id="id16">
+<h3><span class="section-number">2.2.6. </span>XVM 异常处理<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id16" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>XVM 提供异常机制用于支持运行时错误。系统初始化时自动设置 wasm_rt_trap，其中 wasm_rt_trap 是一个 GO 的函数。该函数主要是功能是做一些数据格式与数据类型的转换，如果发生异常则直接 panic。 在每次进行 cgo 在每个进行 CGO 调用的时候通过延迟执行(defer) 注册一个错误处理函数，捕获有关异常，</p>
+<p>XVM 异常主要分为两种类型，分别是 WASM 执行异常和外部函数异常，前者是 WASM 规范规定的的异常以及 GAS 异常，后者主要是执行一些外部函数过程中的异常。</p>
+<dl class="simple">
+<dt>WASM 执行异常主要包括</dt><dd><ul class="simple">
+<li><p>WASM_RT_TRAP_OOB,          /** Out-of-bounds access in linear memory. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id17"><span class="problematic" id="id18">*</span></a>/</p></li>
+<li><p>WASM_RT_TRAP_INT_OVERFLOW, /** Integer overflow on divide or truncation. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id19"><span class="problematic" id="id20">*</span></a>/</p></li>
+<li><p>WASM_RT_TRAP_DIV_BY_ZERO,  /** Integer divide by zero. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id21"><span class="problematic" id="id22">*</span></a>/</p></li>
+<li><p>WASM_RT_TRAP_INVALID_CONVERSION, /** Conversion from NaN to integer. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id23"><span class="problematic" id="id24">*</span></a>/</p></li>
+<li><p>WASM_RT_TRAP_UNREACHABLE,        /** Unreachable instruction executed. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id25"><span class="problematic" id="id26">*</span></a>/</p></li>
+<li><p>WASM_RT_TRAP_CALL_INDIRECT,  /** Invalid call_indirect, for any reason. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id27"><span class="problematic" id="id28">*</span></a>/</p></li>
+<li><p>WASM_RT_TRAP_EXHAUSTION,     /** Call stack exhausted. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id29"><span class="problematic" id="id30">*</span></a>/</p></li>
+<li><p>WASM_RT_TRAP_GAS_EXHAUSTION, /** Gas exhaustion. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id31"><span class="problematic" id="id32">*</span></a>/</p></li>
+<li><p>WASM_RT_TRAP_INVALID_ARGUMENT, /** Invalid argument. <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id33"><span class="problematic" id="id34">*</span></a>/</p></li>
+</ul>
+</dd>
+</dl>
+<p>外部函数异常主要发生在 XVM 运行时执行外部函数时的异常，如 GO 的 runtime 初始化的时间的异常，WASM 的外部函数中使用某系未支持的功能等等。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id35">
+<h3><span class="section-number">2.2.7. </span>XVM 语言运行时<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id35" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>当前 XVM 对 GO 语言 和 C/C++ 语言提供了支持</p>
+<ol class="arabic">
+<li><p>C/C++ 语言</p>
+<blockquote>
+<div><p>c++ 因为没有runtime，因此运行环境相对比较简单，只需要设置基础的堆栈分布以及一些系统函数还有emscripten的运行时函数即可。</p>
+<p>c++合约的内存分布</p>
+<div class="figure align-center" id="id42">
+<a class="reference internal image-reference" href="./语言虚拟机兼容矩阵_files/wasm-c++-memory.png"><img alt="c++合约的内存分布" src="./语言虚拟机兼容矩阵_files/wasm-c++-memory.png" style="width: 100px;"></a>
+<p class="caption"><span class="caption-text">c++合约的内存分布</span><a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id42" title="永久链接至图片">¶</a></p>
+</div>
+</div></blockquote>
+</li>
+<li><p>GO 语言</p>
+<blockquote>
+<div><p>XVM 对 GO 语言的支持作为一个实验特性提供，尝试在 XVM 中对带运行时语言进行支持。GO语言的运行时以外部函数的方式提供。GO 的WASM 运行时主要包括</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>时钟和定时器</p></li>
+<li><p>GO 系统调用</p></li>
+<li><p>调度器相关</p></li>
+<li><p>其他运行时函数</p></li>
+</ul>
+</div></blockquote>
+<div class="figure align-center" id="id43">
+<a class="reference internal image-reference" href="./语言虚拟机兼容矩阵_files/gowasm.png"><img alt="go合约运行时结构" src="./语言虚拟机兼容矩阵_files/gowasm.png" style="width: 400px;"></a>
+<p class="caption"><span class="caption-text">GO 合约运行时结构</span><a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id43" title="永久链接至图片">¶</a></p>
+</div>
+</div></blockquote>
+</li>
+<li><p>WASI 支持</p>
+<blockquote>
+<div><p><a class="reference external" href="https://github.com/WebAssembly/WASI">WASI</a> 提供了一套引擎无关的非 Web 环境下的系统 API，给 WASM 引擎提供了通过系统引擎访问外部资源的能力。
+XVM 也提供了 WASI 的支持。</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="xvm-communitation">
+<span id="id36"></span><h3><span class="section-number">2.2.8. </span>XVM 和 WASM 模块的通信<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#xvm-communitation" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>XVM 和 WASM 模块的交机制主要包括 XVM 向 WASM 模块传递数据以及 WASM 模块向 XVM 传递数据。
+在 XVM 和到 WASM 模块的通信方面，主要依靠 xvm_call 函数完成，该函数接受 params, param_len 两个参数，XVM 在进行函数调用前设置者两个参数即可。
+在 WASM 模块到XVM的通信方面，主要依靠外部函数完成。由于 WASM  的内存是 XVM 宿主进程的页映射，XVM 可以访问 WASM 模块的内存。在进行少量数据传输时，可以直接通过外部函数的参数进行传递，在需要进行大量内容传递时，需要调用方和被调用方约定参数的序列化方式(如PB),数据地址，数据的长度，并通过外部函数参数传递数据地址和数据长度即可。</p>
+<p>以 C++ 合约的系统调用为例，其的函数签名为</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">syscallResolver</span><span class="p">)</span> <span class="nx">cCallMethodv2</span><span class="p">(</span>
+        <span class="nx">ctx</span> <span class="nx">exec</span><span class="p">.</span><span class="nx">Context</span><span class="p">,</span>
+        <span class="nx">methodAddr</span><span class="p">,</span> <span class="nx">methodLen</span> <span class="kt">uint32</span><span class="p">,</span>
+        <span class="nx">requestAddr</span><span class="p">,</span> <span class="nx">requestLen</span> <span class="kt">uint32</span><span class="p">,</span>
+        <span class="nx">responseAddr</span><span class="p">,</span> <span class="nx">responseLen</span> <span class="kt">uint32</span><span class="p">,</span>
+        <span class="nx">successAddr</span> <span class="kt">uint32</span><span class="p">,</span>
+        <span class="p">)</span> <span class="kt">uint32</span>
+</pre></div>
+</div>
+<p>各个参数含义如下</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>methodAddr 和 methodLen 指定了需要调用的方法的地址和长度，method 为 ASCII 字符串</p></li>
+<li><p>requestAddr 和 requestLen 指定了请求的地址和长度, Request 为 PB 序列化的的 Request</p></li>
+<li><p>responseAddr 和 responseLen 返回值的地址和长度, Response 为 PB 序列化的 Response</p></li>
+<li><p>successAddr 为标志，表示调用是否成功</p></li>
+</ul>
+</div></blockquote>
+<p>当合约执行过程中需要进行系统调用时，首先分配返回值所需的内存空间，将请求序列化后放到指定的位置，然后发起系统调用(WASM 的外部函数调用)。</p>
+<p>XVM 执行到该函数时，首先获取该合约调用(一个已经初始化的 xvm_context_t)的完整内存，通过方法地址和方法长度获取系统调用的方法，通过请求地址和请求长度并进行反序列化，执行成功之后将返回值及返回值的长度序列化写入到对应的内存区域。</p>
+<p>外部调用结束，控制流程返回到 WASM 模块时，合约从对应的返回值地址获取返回值，并反序列化得到系统调用的结果。</p>
+</div></blockquote>
+</div>
+<div class="section" id="id37">
+<h3><span class="section-number">2.2.9. </span>XVM 工具链<a class="headerlink" href="https://xuper.baidu.com/n/xuperdoc/design_documents/smart_contract.html#id37" title="永久链接至标题">¶</a></h3>
+<blockquote>
+<div><p>XVM 作为一个智能合约设计的虚拟机，广义的 XVM 除了 XVM 运行时之外，还包括构建工具 XDEV，编译工具 EMCC，合约标准库 contract-sdk-cpp/contract-sdk-go 中和 XVM 交互的部分。为了能够运行将 C 编译成动态链接库，还需要在宿主节点上提供本地的 C++ 开发工具链。</p>
+<p>在本地 C/C++ 工具链的选择上，XVM 没有单独的编译工具链，而是直接采用宿主工具支持。选择宿主工具的优势在于可以移植性和扩展性。在使用 XVM 的过程中，选择和平台架构适配的工具即可完成编译成该平台的动态链接库，如果本地开发工具支持交叉编译，那么也支持编译到不同的目标后端；同时，也可以根据自己的需求选择使用 CLANG 或者使用 GCC 进行编译，充分发挥不同工具的优势。</p>
+<p>在 wasm2c 的选择上，XVM 自带了一份经过定制的 wabt。可以使用 XVM 自带的 wasm 工具，针对智能合约场景优化，支持 GAS 机制，也可以使用用户自定义的 wasm2c 工具，不提供 GAS 支持，作为通用的 WebAssembly 运行时.</p>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/crypto.html" class="btn btn-neutral float-right" title="3. 密码学基础" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="https://xuper.baidu.com/n/xuperdoc/design_documents/key_process.html" class="btn btn-neutral float-left" title="1. 整体流程" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr>
+
+  <div role="contentinfo">
+  <p>
+    © 版权所有 2021, xuper.
+  </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/master/design_documents/smart_contract.html">master</a></dd>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/v3.1/index.html">v3.1</a></dd>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/v3.10/index.html">v3.10</a></dd>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/v3.12/index.html">v3.12</a></dd>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/v3.2/index.html">v3.2</a></dd>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/v3.7/index.html">v3.7</a></dd>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/v3.8/index.html">v3.8</a></dd>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/v3.9/index.html">v3.9</a></dd>
+            <dd><a href="https://xuper.baidu.com/n/xuperdoc/v5.1/design_documents/smart_contract.html">v5.1</a></dd>
+        </dl>
+    </div>
+</div>
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+
+</body></html>
