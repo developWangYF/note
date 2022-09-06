@@ -1,4 +1,4 @@
 a = 'ABC'
 b = a
-a = 'XYZ'
-print(b)
+a = '王云飞'
+print(a[0])
