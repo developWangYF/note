@@ -1,5 +1,7 @@
 ![](../../img/git指令.png)
-
+# 解决git命令行不显示中文问题 
+git config --global core.quotepath false
+# 切换分支 git checkout 分支 
 # git  add:将工作区的内容提交的暂存区
 # 参看工作区和已暂存文件 git status -s
 # 本地连接远程代码仓库
@@ -20,11 +22,13 @@ git config --global core.ignorecase false 设置大小写敏感
    git config --global core.safecrlf true
 注：此处可以设置git config 全局配置，只需设置一次，在其他项目中不需要再次设置。
 ```
-## ②本地远程连接github版本库，需根据用户注册邮箱生产ssh私钥
-```
-ssh-keygen -t rsa -C “blkj@boranet.com.cn”
-```
-![](../../img/生产gitssh私钥-生产路径在图中.png)
+## ②本地远程连接github版本库，需根据用户注册邮箱生成ssh私钥
+1. 生产ssh私钥
+    ```
+    ssh-keygen -t rsa -C “blkj@boranet.com.cn”
+    ```
+    ![](../../img/生产gitssh私钥-生产路径在图中.png)
+2. 登录GitHub，点击右上角进入设置，选择 “SSH/GPG秘钥” 的选项。在管理SSH秘钥中，增加秘钥。用文本工具打开之前生成的id_rsa.pub文件，将秘钥复制粘贴进去，ssh秘钥就配置完成。
 ## ③和远程仓库建立连接
 git remote add origin 链接地址
 ## ④拉取项目到本地
@@ -72,3 +76,29 @@ git push origin develop 可以指定分支
 1. develop用于平常开发代码上传或线上修复bug回传。全新的项目直接上传到develop分支就可以。
 2. master用于代码发版时打包的，一般不直接上传代码到master，发版时合并develop中的代码。
 3. feature 用于项目迭代，比如一个项目已经发版了，又开了个迭代，新迭代的代码需要上传到feature分支，开发完成后合并到develop分支，再合并到master分支。
+# 提交备注规范
+例如：git commit -m 'feat(): 新增功能'  
+注意冒号后面有空格，不能以大写字母开头；  
+包括三个字段：type（必需）、scope（可选）和subject（必需）；
+```
+type：用于说明 commit 的类型；  
+
+scope：可以省略；用于说明 commit 的影响范围，比如数据层、控制层、视图层等等，视项目不同而不同；
+
+subject：commit 目的的简短描述，不超过50个字符；
+    Type类型解释: "docs", ## 仅仅修改了文档，比如README等等
+    "chore", ## 改变构建流程、或者增加依赖库、工具等
+    "feat", ## 新增feature
+    "fix", ## 修复bug
+    "merge", ## Merge branch
+    "perf", ## 优化相关，比如提升性能、体验
+    "refactor", ## 代码重构，没有加新功能或者修复bug
+    "revert", ## 回滚到上一个版本 
+    "style", ## 仅仅修改了空格、格式缩进、逗号等等，不改变代码逻辑 
+    "test" ## 测试用例，包括单元测试、集成测试等
+```
+注意：  
+提测版本从develop打分支tag；  
+删除分支时，注意保留分支之前记录；  
+当需要发版时将代码合并于master;  
+release bugfix feature分支，完成工作后直接删除；
