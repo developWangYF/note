@@ -110,6 +110,10 @@ release bugfix feature分支，完成工作后直接删除；
 
 
 
+# 合并分支 解决分支不一致问题
+develop修改的内容合并到main，可以看到合并成功：
+git checkout main
+git merge develop
 # 代码冲突解决
 更新代码一般会有一下三种情况：  
 对同一项目的不同文件进行了修改  
