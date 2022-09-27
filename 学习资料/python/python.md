@@ -22,6 +22,24 @@
 
 ## bytes python的二进制类型数据 bytes 也是不可变序列。
 bytes 保存的就是原始的字节（二进制格式）数据，因此 bytes 对象可用于在网络上传输数据，也可用于存储各种二进制格式的文件，比如图片、音乐等文件。
+
+
+
+
+## 递归与迭代
+递归和迭代都是循环中的一种：  
+
+递归是重复调用函数自身实现循环。  
+迭代是函数内某段代码实现循环。  
+
+而迭代与普通循环的区别是：循环代码中参与运算的变量同时是保存结果的变量，当前保存的结果作为下一次循环计算的初始值。递归循环中，遇到满足终止条件的情况时逐层返回来结束。**迭代则使用计数器结束循环。**
+### 两者之间的关系：
+
+1） 递归中一定有迭代,但是迭代中不一定有递归,大部分可以相互转换。  
+
+2） 能用迭代的不用递归,递归调用函数,计算有重复,浪费空间,并且递归太深容易造成堆栈的溢出.  
+## Iterator 可递归数据类型
+可递归数据类型，包括list,dict,str,tuple,set
 # python简介
 
 python是一种强类型(不允许不同类型相加)、解释型的动态编程语言,包含对象、模块、线程、异常和自动内存管理。具有可移植性(pyc文件可跨平台运行)、可扩展性（多种多样得库封装）、内置数据结构（）
@@ -306,25 +324,6 @@ GIL 全称：全局解释器锁(Global Interpreter Lock)，是计算机程序设
 PyChecker是Python代码的静态分析工具，它能够帮助查找Python代码中的bug，而且能够对代码的复杂度和难度提供警告。**只适合python2中几个版本**  
 
 Pylint是一个高阶的Python代码分析工具，它分析Python代码中的错误，查找不符合代码风格标准（Pylint 默认使用的代码风格是 PEP 8）和有潜在问题的代码。目前 Pylint 的最新版本是 pylint-1.2.1。可以检查一行代码的长度、变量名是否符合规范等。运行两次可以看出代码是否改进，分数是否有所提高，10分满分。**适合分析python2.5以上版本代码**  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -692,6 +691,23 @@ def person(name, age, **kw):
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 未解决问题：递归 栈溢出 尾递归也会溢出 通过迭代优化
 ## 递归函数
 在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。
@@ -700,6 +716,196 @@ def person(name, age, **kw):
 在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。
 
 **大多数编程语言没有针对尾递归做优化**，Python解释器也没有做优化，所以，即使把上面的fact(n)函数改成尾递归方式，也会导致栈溢出。
+
+
+## 迭代
+C语言通过下标进行迭代(遍历)列表，
+python可以通过for 迭代任意可迭代对象，无论有无下标，都可以迭代，比如dict就可以迭代。
+```python
+for x in all:
+#all为字典只能遍历出无序key
+#遍历字典value
+for value in all.values()
+#遍历字典key-value
+for k, v in d.items()
+```
+list实现类似Java那样的下标循环怎么办？Python内置的enumerate函数可以把一个list变成索引-元素对
+```python
+>>> for i, value in enumerate(['A', 'B', 'C']):
+...     print(i, value)
+...
+0 A
+1 B
+2 C
+```
+for循环里，同时引用了两个变量，在Python里是很常见的，比如下面的代码：
+```python
+for x, y in [(1, 1), (2, 4), (3, 9)]:
+...     print(x, y)
+...
+1 1
+2 4
+3 9
+```
+当我们使用for循环时，只要作用于一个可迭代对象，for循环就可以正常运行，而我们不太关心该对象究竟是list还是其他数据类型。  
+
+那么，如何判断一个对象是可迭代对象呢？方法是通过collections.abc模块的Iterable类型判断：  
+```python
+>>> from collections.abc import Iterable
+>>> isinstance('abc', Iterable) # str是否可迭代
+True
+```
+
+## 列表生成式
+```python
+>>> L = []
+>>> for x in range(1, 11):
+...    L.append(x * x)
+...
+>>> L
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+等同于：
+>>> [x * x for x in range(1, 11)]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+示例：
+>>> [x * x for x in range(1, 11) if x % 2 == 0]
+[4, 16, 36, 64, 100]
+
+>>> [m + n for m in 'ABC' for n in 'XYZ']
+['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']
+
+#if else的用法
+错误示例：
+      # 我们不能在最后的if加上else：
+
+      # >>> [x for x in range(1, 11) if x % 2 == 0 else 0]
+      #   File "<stdin>", line 1
+      #     [x for x in range(1, 11) if x % 2 == 0 else 0]
+      #                                               ^
+      # SyntaxError: invalid syntax
+      # 这是因为跟在for后面的if是一个筛选条件，不能带else，否则如何筛选？
+
+      # 另一些童鞋发现把if写在for前面必须加else，否则报错：
+
+      # >>> [x if x % 2 == 0 for x in range(1, 11)]
+      #   File "<stdin>", line 1
+      #     [x if x % 2 == 0 for x in range(1, 11)]
+      #                       ^
+      # SyntaxError: invalid syntax
+正确示例：
+>>> [x if x % 2 == 0 else -x for x in range(1, 11)]
+[-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
+
+```
+**在一个列表生成式中，for前面的if ... else是表达式，而for后面的if是过滤条件，不能带else。**
+
+## 生成器（边循环next(generator函数)边计算逐条输出 yield）
+通过列表生成式，我们可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含100万个元素的列表，不仅占用很大的存储空间，如果我们仅仅需要访问前面几个元素，那后面绝大多数元素占用的空间都白白浪费了。  
+
+所以，如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：generator。
+
+解释文档：https://www.liaoxuefeng.com/wiki/1016959663602400/1017318207388128
+## 迭代器 for迭代输出生成器
+解释文档：
+https://www.liaoxuefeng.com/wiki/1016959663602400/1017323698112640
+
+## 高阶函数
+编写高阶函数，就是让函数的参数能够接收别的函数。
+### map() 列表自定义标准化
+map()函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回。
+```python
+>>> def f(x):
+...     return x * x
+...
+>>> r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+>>> list(r)
+[1, 4, 9, 16, 25, 36, 49, 64, 81]
+```
+将列表中数据全部转化为字符串  
+list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+### reduce() 复合应用
+reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算，其效果就是：  
+**reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)**
+示例：
+```python
+>>> from functools import reduce
+>>> def add(x, y):
+...     return x + y
+...
+>>> reduce(add, [1, 3, 5, 7, 9])
+25
+```
+## filter() 用函数过滤序列
+filter()也接收一个函数和一个序列。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃该元素。  
+```python
+def is_odd(n):
+    return n % 2 == 1
+
+list(filter(is_odd, [1, 2, 4, 5, 6, 9, 10, 15]))
+# 结果: [1, 5, 9, 15]
+```
+### score() 排序方法
+Python内置的sorted()函数就可以对list进行排序：
+**score排序不改变list元素本身**
+sorted()函数也是一个高阶函数，它还可以接收一个key函数来实现自定义的排序，例如按绝对值大小排序：
+```python
+>>> sorted([36, 5, -12, 9, -21], key=abs)
+[5, 9, -12, -21, 36]
+```
+
+## 函数返回值为一个函数，及为返回函数
+```python
+def lazy_sum(*args):
+    def sum():
+        ax = 0
+        for n in args:
+            ax = ax + n
+        return ax
+    return sum
+```
+
+## 匿名函数
+匿名函数lambda x: x * x实际上就是：def f(x): return x * x
+简化高阶函数(以函数为参数的函数)设计
+lambda x: x * x
+map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+## 修饰器
+在函数调用前后自动打印日志，但又不希望修改now()函数的定义(内容)，这种在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）。
+decorator就是一个返回函数的高阶函数。
+```Python
+#定义一个打印函数名（函数变量.__name__）
+def log(func):
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+
+# 应用修饰器
+@log
+def now():
+    print('2015-3-25')
+
+>>> now()
+call now():
+2015-3-25
+
+#把@log放到now()函数的定义处，相当于执行了语句：now = log(now)
+```
+
+
+
+## 疑难问题
+### 闭包问题，由返回函数引用循环中变量产生
+
+返回函数不要引用任何循环变量，或者后续会发生变化的变量。
+
+
+
+
+
 ## 面试问题 变量的比较
 == 比较变量的引用地址
 is或内置比较函数 比较变量地址下存储的值
@@ -715,9 +921,10 @@ is或内置比较函数 比较变量地址下存储的值
 第二行注释是为了告诉Python解释器，按照UTF-8编码读取源代码，否则，你在源代码中写的中文输出可能会有乱码。
 
 
-### 
-
-# nodejs
+### PEP 8 标准格式化代码
+https://www.cnblogs.com/niuben/p/15786363.html
+官网文档: https://peps.python.org/pep-0008/
+nodejs
 ```
 ### nodejs 运行环境不属于框架
 nodejs是一个基于Chrome V8引擎的JavaScript运行环境,一种让JavaScript运行在服务端的开发平台。  
@@ -754,4 +961,4 @@ Node.js主要优点是Node.js在吞吐量方面速度非常快。缺点是在构
 
 
 
-##
+## 

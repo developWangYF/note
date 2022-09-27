@@ -29,3 +29,14 @@ import json
 
 # a = '123456'
 # print(a[0:1])# 取一个下标为零的元素
+# s ='asdaf'
+# print(s.lower())
+# a=[int(x) for x in input() if x is not ' '] #输入1 2 3
+# a,b,c =input() #输入123
+# for i in range(1, 4):
+#     print(i)
+import sys
+if __name__ == '__main__':
+    print(sys.argv)
+    a=1
+    sys.exit(0)
