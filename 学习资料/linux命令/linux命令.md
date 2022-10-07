@@ -123,3 +123,77 @@ top命令会不停的刷新，过滤后看一组就行
 
 # 解压命令
 tar -xzvf file.tar.gz //解压tar.gz
+unzip 目标文件 目标位置
+zip -r 新生成文件名 目标文件夹
+
+# 定时任务命令
+crontab命令  
+注意：  
+新创建的 cron 任务，不会马上执行，至少要过 2 分钟后才可以，当然你可以重启 cron 来马上执行。
+1. yum命令安装Crontab：
+```linux
+yum install vixie-cron 
+yum install crontabs
+注：vixie-cron软件包是cron的主程序；
+crontabs软件包是用来安装、卸装、或列举用来驱动 cron 守护进程的表格的程序。
+cron是linux的内置服务，但它不自动起来，可以用以下的方法启动、关闭这个服务：
+/sbin/service crond start #启动服务
+/sbin/service crond stop #关闭服务
+/sbin/service crond restart #重启服务
+/sbin/service crond reload #重新载入配置
+```
+2. 查看crontab状态
+service crond status
+ntsysv #查看crontab服务是否已设置为开机启动  
+chkconfig –level 35 crond on #加入开机自动启动  
+3. 添加定时任务：
+```linux
+crontab -e #编辑cron任务模式
+i #默认文字编辑器为vim，按i字母键即可添加cron任务
+30 3 * * * /usr/local/etc/rc.d/lighttpd restart #将命令代码放入，此命令意义为每天的03:30 重启apache
+ESC #按ESC键退出编辑模式
+:wq #键入:wq保存
+service crond restart #重启crontab服务
+```
+4. 查看任务列表：
+
+5. 定时任务语法
+```linux
+（1）语　　法：
+crontab [-u <用户名称>][配置文件] 或 crontab { -l | -r | -e }
+-u   #<用户名称> 是指设定指定<用户名称>的定时任务，这个前提是你必须要有其权限(比如说是 root)才能够指定他人的时程表。如果不使用 -u user 的话，就是表示设定自己的定时任务。
+-l 　#列出该用户的定时任务设置。
+-r 　#删除该用户的定时任务设置。
+-e 　#编辑该用户的定时任务设置。
+ 
+（2）命令时间格式 :
+
+*     * 　  *　  *　  *　　command
+分　  时　  日　  月　 周　  命令
+第1列表示分钟1～59 每分钟用*或者 */1表示
+第2列表示小时1～23（0表示0点）
+第3列表示日期1～31
+第4列表示月份1～12
+第5列标识号星期0～6（0表示星期天）
+第6列要运行的命令
+ 
+（3）一些Crontab定时任务例子：
+30 21 * * * /usr/local/etc/rc.d/lighttpd restart  #每晚的21:30 重启apache
+45 4 1,10,22 * * /usr/local/etc/rc.d/lighttpd restart  #每月1、10、22日的4 : 45重启apache
+10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart  #每周六、周日的1 : 10重启apache
+0,30 18-23 * * * /usr/local/etc/rc.d/lighttpd restart  #每天18 : 00至23 : 00之间每隔30分钟重启apache
+0 23 * * 6 /usr/local/etc/rc.d/lighttpd restart  #每星期六的11 : 00 pm重启apache
+* 23-7/1 * * * /usr/local/etc/rc.d/lighttpd restart  #晚上11点到早上7点之间，每隔一小时重启apache
+* */1 * * * /usr/local/etc/rc.d/lighttpd restart  #每一小时重启apache
+0 11 4 * mon-wed /usr/local/etc/rc.d/lighttpd restart  #每月的4号与每周一到周三的11点重启apache
+0 4 1 jan * /usr/local/etc/rc.d/lighttpd restart  #一月一号的4点重启apache
+ 
+*/30 * * * * /usr/sbin/ntpdate cn.pool.ntp.org  #每半小时同步一下时间
+0 */2 * * * /sbin/service httpd restart  #每两个小时重启一次apache 
+50 7 * * * /sbin/service sshd start  #每天7：50开启ssh服务 
+50 22 * * * /sbin/service sshd stop  #每天22：50关闭ssh服务 
+0 0 1,15 * * fsck /home  #每月1号和15号检查/home 磁盘 
+1 * * * * /home/bruce/backup  #每小时的第一分执行 /home/bruce/backup这个文件 
+00 03 * * 1-5 find /home "*.xxx" -mtime +4 -exec rm {} \;  #每周一至周五3点钟，在目录/home中，查找文件名为*.xxx的文件，并删除4天前的文件。
+30 6 */10 * * ls  #每月的1、11、21、31日是的6：30执行一次ls命令
+```
