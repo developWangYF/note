@@ -49,20 +49,26 @@ git push origin develop 可以指定分支
 <br>
 
 # 远程创建新分支
-1. 查看远程和本地的当前分支：git branch -a 、git branch  
+1. 查看远程和本地所有分支：
+    git branch -a 
 2. ①仅创建本地分支  
     ```git
     git branch 新分支名  
     ```
     ②在本地创建新分支并跳转到分支  
     ```git
-    git checkout -b develop  
+    git checkout -b 新分支名  
     ```
-3. 为远程版本库创建连接  
+3. 先跳转到新分支，为远程版本库创建连接
     ```git
-    git push --set-upstream origin develop
+    git push origin 新分支名
     ```
-4. 拉取、提交、推送  
+4. 将本地创建的分支与远程分支进行关联
+    git branch --set-upstream-to=origin/新分支名
+5. 查看本地分支与远程分支的映射关系
+    git branch -vv
+
+6. 拉取、提交、推送  
     1. git add .     
     2. git  commit -m "备注信息"       
     3. git push origin develop
@@ -128,3 +134,21 @@ git merge develop
 的任意一个，或是选择将两个修改全部保留。完成上述决策就是手动合并的目的。
 3. 对于第三种情况，需要手动对内容区进行更改：
 ![](../../img/更新冲突.png)
+
+
+# git的回滚
+
+1.回退已经push到远程分支的代码
+
+$ git reset --hard HEAD^ 回退到上个版本
+$ git reset --hard HEAD~n n代表会推到n次前的操作
+$ git reset --hard commit_id 进入指定commit的
+2.强制推送到远程分支
+
+$ git push origin HEAD --force
+3.回滚某次操作
+
+$ git revert commit_id  撤回某一次操作，会生成一条新的操作记录，进入编辑行，编辑完后，使用:wq保存退出即可。
+4.撤销本地未提交合并
+
+$ git merge --abort

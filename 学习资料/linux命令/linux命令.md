@@ -197,3 +197,32 @@ crontab [-u <用户名称>][配置文件] 或 crontab { -l | -r | -e }
 00 03 * * 1-5 find /home "*.xxx" -mtime +4 -exec rm {} \;  #每周一至周五3点钟，在目录/home中，查找文件名为*.xxx的文件，并删除4天前的文件。
 30 6 */10 * * ls  #每月的1、11、21、31日是的6：30执行一次ls命令
 ```
+
+
+
+# screen全屏窗口管理器
+
+yum install -y screen
+## 创建一个新窗口
+screen -S test
+## 参看窗口
+screen -ls
+
+screen -r 进入不了会话的时候，有其他用户正在访问
+①screen -x 共享访问用户
+②screen -d 远程将其他用户退出会话
+screen -r 再次进入会话
+
+## 删除会话
+1、没有重命名的直接可以screen -S session_name -X quit
+2、重命名的，需要带上id删，screen -S id.session_name -X quit
+
+## 退出绘画
+1、保持会话退出：  
+快捷键命令：先同时按Ctrl+A然后按D键
+
+后面需要进入的时候直接输入：screen -r （name）再次进入
+
+2、完全退出
+
+输入：exit，就是直接kill掉当前的会话进程

@@ -4,6 +4,8 @@
 # b = a
 # a = '王云飞'
 # print(a[0])
+from copy import copy
+from copy import deepcopy
 import pickle
 import json
 # d=dict(name='shirley',age=23,score=98)
@@ -35,8 +37,45 @@ import json
 # a,b,c =input() #输入123
 # for i in range(1, 4):
 #     print(i)
-import sys
-if __name__ == '__main__':
-    print(sys.argv)
-    a=1
-    sys.exit(0)
+# import sys
+# if __name__ == '__main__':
+#     print(sys.argv)
+#     a=1
+#     sys.exit(0)
+
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+#                     _ooOoo_
+#                   o8888888o
+#                    88" . "88
+#                 ( | -  _  - | )
+#                     O\ = /O
+#                 ____/`---'\____
+#                  .' \\| |// `.
+#                 / \\|||:|||// \
+#               / _|||||-:- |||||- \
+#                | | \\\ - /// | |
+#              | \_| ''\---/'' | _/ |
+#               \ .-\__ `-` ___/-. /
+#            ___`. .' /--.--\ `. . __
+#         ."" '< `.___\_<|>_/___.' >'"".
+#       | | : `- \`.;`\  _ /`;.`/ - ` : | |
+#          \ \ `-. \_ __\ /__ _/ .-` / /
+#      ==`-.____`-.___\_____/___.-`____.-'==
+#                     `=---='
+'''
+@Project ：pythonalgorithms 
+@File ：Inversefunction.py
+@Author ：不胜人生一场醉@Date ：2021/7/29 23:17 
+'''
+b=[1]
+a=[1,2,b]
+c=copy(a)
+
+print(id(b))
+print(id(c[2]))
+print(a[2])
+if a[2] is b:
+    print('sss')
+elif a[2] == b :
+    print('swwww')
